@@ -17,6 +17,10 @@ function App() {
     setJobs([...jobs, { ...newJob, id: jobs.length + 1}])
   }
 
+  function deleteJob(id) {
+    setJobs(jobs.filter(job => job.id !== id))
+  }
+
   const filteredJobs = filter === "All"
     ? jobs
     : jobs.filter(job => job.status === filter)
@@ -26,7 +30,7 @@ function App() {
       <h1>Job Application Tracker</h1>
       <JobForm onAdd={addJob} />
       <StatusFilter current ={filter} onFilter={setFilter} />
-      <JobList jobs={filteredJobs} />
+      <JobList jobs={filteredJobs} onDelete={deleteJob} />
     </div>
   )
 }
