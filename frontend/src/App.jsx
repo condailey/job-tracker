@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import JobList from './components/JobList'
 import JobForm from './components/JobForm'
+import StatusFilter from './components/StatusFilter'
 
 const fakeJobs = [
   { id: 1, company: "Google", title: "Data Engineer", status: "Applied"},
@@ -10,15 +11,22 @@ const fakeJobs = [
 
 function App() {
   const [jobs, setJobs] = useState(fakeJobs)
+  const [filter, setFilter] = useState("All")
 
   function addJob(newJob) {
     setJobs([...jobs, { ...newJob, id: jobs.length + 1}])
   }
+
+  const filteredJobs = filter === "All"
+    ? jobs
+    : jobs.filter(job => job.status === filter)
+
   return (
     <div>
       <h1>Job Application Tracker</h1>
       <JobForm onAdd={addJob} />
-      <JobList jobs={jobs} />
+      <StatusFilter current ={filter} onFilter={setFilter} />
+      <JobList jobs={filteredJobs} />
     </div>
   )
 }
