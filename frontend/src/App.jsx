@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import JobList from './components/JobList'
 import JobForm from './components/JobForm'
 import StatusFilter from './components/StatusFilter'
-import { getJobs, createJob, deleteJob } from './api'
+import { getJobs, createJob, deleteJob, updateJob } from './api'
 
 function App() {
   const [jobs, setJobs] = useState([])
@@ -22,6 +22,11 @@ function App() {
     setJobs(jobs.filter(job => job.id !== id))
   }
 
+  async function editJob(id, updatedJob) {
+    const saved = await updateJob(id, updatedJob)
+    setJobs(jobs.map(job => job.id === id ? saved : job))
+  }
+
   const filteredJobs = filter === "All"
     ? jobs
     : jobs.filter(job => job.status === filter)
@@ -31,7 +36,7 @@ function App() {
       <h1>Job Application Tracker</h1>
       <JobForm onAdd={addJob} />
       <StatusFilter current={filter} onFilter={setFilter} />
-      <JobList jobs={filteredJobs} onDelete={removeJob} />
+      <JobList jobs={filteredJobs} onDelete={removeJob} onUpdate={editJob} />
     </div>
   )
 }
