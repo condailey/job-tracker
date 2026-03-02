@@ -19,3 +19,12 @@ export async function deleteJob(id) {
         method: "DELETE",
     })
 }
+
+export async function updateJob(id, job) {
+    const response = await fetch(`${API_URL}/jobs/${id}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json" },
+        body: JSON.stringify(job),
+    })
+    return response.json()
+}
