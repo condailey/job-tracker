@@ -28,3 +28,12 @@ export async function updateJob(id, job) {
     })
     return response.json()
 }
+
+export async function matchResume(jobDescription, resume) {
+    const response = await fetch(`${API_URL}/match`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ job_description: jobDescription, resume: resume }),
+    })
+    return response.json()
+}

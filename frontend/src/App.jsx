@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import JobList from './components/JobList'
 import JobForm from './components/JobForm'
 import StatusFilter from './components/StatusFilter'
+import AIFeature from './components/AIFeature'
 import { getJobs, createJob, deleteJob, updateJob } from './api'
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
       <JobForm onAdd={addJob} />
       <StatusFilter current={filter} onFilter={setFilter} />
       <JobList jobs={filteredJobs} onDelete={removeJob} onUpdate={editJob} />
+      <AIFeature />
     </div>
   )
 }
