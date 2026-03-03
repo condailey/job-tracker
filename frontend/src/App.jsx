@@ -33,14 +33,15 @@ function App() {
     : jobs.filter(job => job.status === filter)
 
   return (
-    <div>
-      <h1>Job Application Tracker</h1>
-      <JobForm onAdd={addJob} />
-      <StatusFilter current={filter} onFilter={setFilter} />
-      <JobList jobs={filteredJobs} onDelete={removeJob} onUpdate={editJob} />
-      <AIFeature />
-    </div>
-  )
-}
-
+      <div className="max-w-2xl mx-auto p-6 min-h-screen bg-gray-50">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">Job Application
+  Tracker</h1>
+        <JobForm onAdd={addJob} />
+        <StatusFilter current={filter} onFilter={setFilter} />
+        <JobList jobs={filteredJobs} onDelete={removeJob} onUpdate={editJob} />
+        <AIFeature />
+      </div>
+    )
+  }
+  
 export default App
