@@ -14,3 +14,7 @@ class JobResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class MatchRequest(BaseModel):
+    job_description: str
+    resume: str

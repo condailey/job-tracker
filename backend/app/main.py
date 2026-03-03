@@ -2,7 +2,8 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import engine, Base, SessionLocal
 from app import models
-from app.schemas import JobCreate, JobResponse
+from app.schemas import JobCreate, JobResponse, MatchRequest
+from app.llm import analyze_match
 
 Base.metadata.create_all(bind=engine)
 
@@ -68,3 +69,8 @@ def delete_job(job_id: int, db: Session = Depends(get_db)):
     db.delete(job)
     db.commit()
     return {"detail": "Job deleted"}
+
+@app.post("/match")
+def match_resume(request: MatchRequest):
+    result = analyze_match(request.job_description, request.resume)
+    return {"result": result}
