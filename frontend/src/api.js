@@ -5,6 +5,11 @@ export async function getJobs () {
     return response.json()
 }
 
+export async function getJob(id) {
+    const response = await fetch(`${API_URL}/jobs/${id}`)
+    return response.json()
+}
+
 export async function createJob(job) {
     const response = await fetch(`${API_URL}/jobs`, {
         method: "POST",
