@@ -4,6 +4,7 @@ from app.database import engine, Base, SessionLocal
 from app import models
 from app.schemas import JobCreate, JobResponse, MatchRequest
 from app.llm import analyze_match
+from mangum import Mangum
 
 Base.metadata.create_all(bind=engine)
 
@@ -13,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -74,3 +75,5 @@ def delete_job(job_id: int, db: Session = Depends(get_db)):
 def match_resume(request: MatchRequest):
     result = analyze_match(request.job_description, request.resume)
     return {"result": result}
+
+handler = Mangum(app)

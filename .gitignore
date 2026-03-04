@@ -11,5 +11,9 @@ __pycache__/
 # OS files
 .DS_Store
 
+# Lambda build artifacts
+backend/package/
+backend/lambda.zip
+
 # Documentation
 .claude

@@ -11,7 +11,7 @@ def analyze_match(job_description: str, resume: str) -> str:
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
         max_tokens=1024,
-        system="You are a job application analyst. Given a job description and a resume, provide: 1) A match score from 0-100, 2) Key matching skills, 3) Gaps to address. Be concise and actionable.",
+        system="You are a job application analyst. Given a job description and a resume, provide: 1) A match score from 0-100, 2) Key matching skills, 3) Gaps to address. Be concise and actionable. Please don't include LLM artifacts like emojis, emm dashes, or hyphens.",
         messages=[
             {
                 "role": "user",
