@@ -15,5 +15,8 @@ __pycache__/
 backend/package/
 backend/lambda.zip
 
+# Test database
+backend/test.db
+
 # Documentation
 .claude
