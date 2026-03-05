@@ -18,5 +18,7 @@ backend/lambda.zip
 # Test database
 backend/test.db
 
-# Documentation
+# Claude
 .claude
+claude.md
+CLAUDE.md
